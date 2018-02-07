@@ -19,6 +19,8 @@ class Melangeur {
 
     void retirer(void* elem) ;
 
+    void grandir();
+
     void vider() ;
 
     int taille() ;

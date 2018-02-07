@@ -7,11 +7,15 @@ Melangeur::Melangeur(int octets) {
 }
 
 Melangeur::~Melangeur() {
-  /* votre code ici */
+  free(data);
 }
 
 void Melangeur::inserer(const void* elem) {
-  /* votre code ici */
+  if(capacite == taille) {
+        grandir() ;
+    }
+    std::memcpy(data + octets * taille, elem, octets) ;
+    ++taille ;
 }
 
 void Melangeur::retirer(void* elem) {
@@ -19,12 +23,18 @@ void Melangeur::retirer(void* elem) {
 }
 
 void Melangeur::vider() {
-  /* votre code ici */
+  free(data)
 }
 
 int Melangeur::taille() {
-  /* votre code ici */
-  return 0 ; /* a remplacer */
+  return taille ;
+}
+
+void Melangeur::grandir(){
+  capacite *= 2 ;
+  char* tmp = (char*)realloc(data, capacite*octets) ;
+  assert(tmp) ;
+  data = tmp ;
 }
 
 } //end of namespace MMaze
