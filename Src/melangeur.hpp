@@ -5,6 +5,10 @@ namespace MMaze {
 
 class Melangeur {
 
+  private :
+    int octets;
+    void* tab;
+
   public :
 
     Melangeur(int octets) ;
