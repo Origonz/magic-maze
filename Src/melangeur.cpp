@@ -24,6 +24,7 @@ void Melangeur::retirer(void* elem) {
 
 void Melangeur::vider() {
   free(data)
+  taille = 0;
 }
 
 int Melangeur::taille() {
