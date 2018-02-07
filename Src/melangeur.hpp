@@ -3,14 +3,17 @@
 
 namespace MMaze {
 
-class Melangeur {
-
+  class Melangeur {
+    
   private :
     int octets;
-    void* tab;
-
+    char* data;
+    int taille;
+    int capacite;
+    
+    
   public :
-
+    
     Melangeur(int octets) ;
 
     ~Melangeur() ;
