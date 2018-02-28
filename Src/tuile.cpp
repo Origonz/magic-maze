@@ -10,6 +10,7 @@ using namespace std;
 namespace MMaze {
 
   Tuile::Tuile() {
+      srand(time(NULL));
     for (unsigned int i=0; i<4; i++) {
       for (unsigned int j=0; j<4; j++) {
         tab[4*i+j] = new Case(i, j);
@@ -27,6 +28,32 @@ namespace MMaze {
   bool Tuile::accessible(Case c) const {
     /* remplacez ce code */
     return false ;
+  }
+
+  void Tuile::placement_sortie(){
+      //TODO
+  }
+
+  void Tuile::placement_depart(){
+      //TODO
+  }
+
+  void Tuile::placement_objectif(){
+    //TODO
+  }
+
+  void Tuile::placement_porte(){
+      //TODO
+  }
+
+  void Tuile::placement_site(){
+    if(rand()%2)
+        placement_objectif();
+    else if (rand()%2)
+        placement_sortie();
+    while(rand()%4==0){
+        placement_porte();
+    }
   }
   
   void Tuile::afficher_horizontal(std::ostream& out, unsigned int i) const {

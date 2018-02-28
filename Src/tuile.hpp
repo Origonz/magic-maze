@@ -29,8 +29,14 @@ namespace MMaze {
     //affichage
     void afficher_horizontal(std::ostream& out, unsigned int i) const ;
     void afficher_vertical(std::ostream& out, unsigned int i) const ;
+    void placement_sortie();
+    void placement_objectif();
+    void placement_porte();
+    void placement_depart();
+    void placement_site();
 
     Case* tab[16];
+    char sites[16];
     bool walls[24];
   } ;
 
