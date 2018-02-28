@@ -5,18 +5,20 @@
 #include <iostream>
 #include <cstdlib>
 
+use namespace std;
+
 namespace MMaze {
 
   Tuile::Tuile() {
-    Case *c = new Case(3, 3);
-    for (unsigned int i=0; i<c->index(); i++) {
-      c = new Case(i);
+    for (unsigned int i=0; i<4; i++) {
+      for (unsigned int j=0; j<4; j++) {
+	tab[4*i + j] = new Case(i, j);
+      }
     }
   }
   
   bool Tuile::mur(Mur m) const {
-    /* remplacez ce code */
-    return rand() % 2 ;
+    //Rien
   }
   
   bool Tuile::accessible(Case c) const {
