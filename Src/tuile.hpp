@@ -3,6 +3,7 @@
 
 #include "case.hpp"
 #include "mur.hpp"
+#include "couleurs.hpp"
 
 #include <vector>
 #include <iostream>
@@ -37,7 +38,7 @@ namespace MMaze {
 
     Case* tab[16];
     char sites[16];
-    int couleurs[16];
+    Couleur couleurs[16];
     bool walls[24];
   } ;
 

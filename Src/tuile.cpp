@@ -6,11 +6,6 @@
 #include <cstdlib>
 
 using namespace std;
-const int V = 1;
-const int O = 2;
-const int J = 3;
-const int P = 4;
-const int N = 0;
 
 namespace MMaze {
 
@@ -19,7 +14,7 @@ namespace MMaze {
     for (unsigned int i=0; i<4; i++) {
       for (unsigned int j=0; j<4; j++) {
         tab[4*i+j] = new Case(i, j);
-        couleurs[4*i+j] = N;
+        couleurs[4*i+j] = Couleur::AUCUNE;
         sites[4*i+j] = '0';
       }
     }
@@ -29,7 +24,7 @@ namespace MMaze {
   }
   
   bool Tuile::mur(Mur m) const {
-      return walls[m.index()]==true;
+      return walls[m.index()];
   }
   
   bool Tuile::accessible(Case c) const {
@@ -46,14 +41,14 @@ namespace MMaze {
       sites[6] = 'd';
       sites[9] = 'd';
       sites[10] = 'd';
-      couleurs[5] = V;
-      couleurs[6] = P;
-      couleurs[9] = O;
-      couleurs[10] = J;
-      couleurs[2] = V;
-      couleurs[4] = P;
-      couleurs[11] = O;
-      couleurs[13] = J;
+      couleurs[5] = Couleur::VERT;
+      couleurs[6] = Couleur::JAUNE;
+      couleurs[9] = Couleur::VIOLET;
+      couleurs[10] = Couleur::ORANGE;
+      couleurs[2] = Couleur::VERT;
+      couleurs[4] = Couleur::JAUNE;
+      couleurs[11] = Couleur::VIOLET;
+      couleurs[13] = Couleur::ORANGE;
       placement_porte();
   }
 
