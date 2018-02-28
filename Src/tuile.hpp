@@ -37,6 +37,7 @@ namespace MMaze {
 
     Case* tab[16];
     char sites[16];
+    int couleurs[16];
     bool walls[24];
   } ;
 

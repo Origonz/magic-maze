@@ -6,14 +6,21 @@
 #include <cstdlib>
 
 using namespace std;
+const int V = 1;
+const int O = 2;
+const int J = 3;
+const int P = 4;
+const int N = 0;
 
 namespace MMaze {
 
   Tuile::Tuile() {
-      srand(time(NULL));
+    srand(time(NULL));
     for (unsigned int i=0; i<4; i++) {
       for (unsigned int j=0; j<4; j++) {
         tab[4*i+j] = new Case(i, j);
+        couleurs[4*i+j] = N;
+        sites[4*i+j] = '0';
       }
     }
     for(int i=0;i<24;i++){
@@ -35,7 +42,19 @@ namespace MMaze {
   }
 
   void Tuile::placement_depart(){
-      //TODO
+      sites[5] = 'd';
+      sites[6] = 'd';
+      sites[9] = 'd';
+      sites[10] = 'd';
+      couleurs[5] = V;
+      couleurs[6] = P;
+      couleurs[9] = O;
+      couleurs[10] = J;
+      couleurs[2] = V;
+      couleurs[4] = P;
+      couleurs[11] = O;
+      couleurs[13] = J;
+      placement_porte();
   }
 
   void Tuile::placement_objectif(){
@@ -43,7 +62,10 @@ namespace MMaze {
   }
 
   void Tuile::placement_porte(){
-      //TODO
+      sites[2] = 'p';
+      sites[4] = 'p';
+      sites[11] = 'p';
+      sites[13] = 'p';
   }
 
   void Tuile::placement_site(){
