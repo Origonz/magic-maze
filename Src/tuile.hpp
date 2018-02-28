@@ -29,6 +29,9 @@ namespace MMaze {
     //affichage
     void afficher_horizontal(std::ostream& out, unsigned int i) const ;
     void afficher_vertical(std::ostream& out, unsigned int i) const ;
+
+    Case* tab[16];
+    bool walls[24];
   } ;
 
 } //end of namespace MMaze

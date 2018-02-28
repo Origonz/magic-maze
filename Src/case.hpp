@@ -52,7 +52,6 @@ namespace MMaze {
 
     //stockage sous forme d'un entier comme ci-dessus
     unsigned int index_ ;
-    Case tab[16];
 
   } ;
 
