@@ -3,8 +3,8 @@
 
 #include "case.hpp"
 #include "mur.hpp"
+#include "site.hpp"
 #include "couleurs.hpp"
-
 #include <vector>
 #include <iostream>
 
@@ -14,7 +14,7 @@ namespace MMaze {
 
   public :
 
-    Tuile() ;
+    Tuile(bool d = false);
 
     //indique si deux cases voisines sont separees par un mur
     bool mur(Mur m) const ;
@@ -37,7 +37,7 @@ namespace MMaze {
     void placement_site();
 
     Case* tab[16];
-    char sites[16];
+    Site* sites[16];
     Couleur couleurs[16];
     bool walls[24];
   } ;

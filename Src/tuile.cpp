@@ -9,18 +9,23 @@ using namespace std;
 
 namespace MMaze {
 
-  Tuile::Tuile() {
+  Tuile::Tuile(bool d) {
     srand(time(NULL));
     for (unsigned int i=0; i<4; i++) {
       for (unsigned int j=0; j<4; j++) {
         tab[4*i+j] = new Case(i, j);
         couleurs[4*i+j] = Couleur::AUCUNE;
-        sites[4*i+j] = '0';
       }
     }
     for(int i=0;i<24;i++){
-        walls[i] = false;
+        walls[i] = true;
     }
+    if(d){
+         placement_depart();
+    }else {
+        placement_site();
+    }
+
   }
   
   bool Tuile::mur(Mur m) const {
@@ -33,14 +38,17 @@ namespace MMaze {
   }
 
   void Tuile::placement_sortie(){
-      //TODO
+      int portes[] = {2,4,11,13};
+      int p = rand()%4;
+      sites[portes[p]] = new Sortie();
+      //TODO -> voir pour la gestion des couleurs
   }
 
   void Tuile::placement_depart(){
-      sites[5] = 'd';
-      sites[6] = 'd';
-      sites[9] = 'd';
-      sites[10] = 'd';
+      sites[5] = new Depart();
+      sites[6] = new Depart();
+      sites[9] = new Depart();
+      sites[10] = new Depart();
       couleurs[5] = Couleur::VERT;
       couleurs[6] = Couleur::JAUNE;
       couleurs[9] = Couleur::VIOLET;
@@ -53,24 +61,24 @@ namespace MMaze {
   }
 
   void Tuile::placement_objectif(){
-    //TODO
+     int o = rand()%16;
+     sites[o] = new Objectif();
+    //TODO -> voir pour la gestion des couleurs
   }
 
   void Tuile::placement_porte(){
-      sites[2] = 'p';
-      sites[4] = 'p';
-      sites[11] = 'p';
-      sites[13] = 'p';
+      sites[2] = new Porte();
+      sites[4] = new Porte();
+      sites[11] = new Porte();
+      sites[13] = new Porte();
   }
 
   void Tuile::placement_site(){
+    placement_porte();
     if(rand()%2)
         placement_objectif();
     else if (rand()%2)
         placement_sortie();
-    while(rand()%4==0){
-        placement_porte();
-    }
   }
   
   void Tuile::afficher_horizontal(std::ostream& out, unsigned int i) const {

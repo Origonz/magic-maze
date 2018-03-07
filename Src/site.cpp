@@ -1,9 +1,25 @@
 #include "site.hpp"
 
-Couleur Site::getCouleur(){
-    return couleur;
+Site::Site(){
+
 }
 
-void Site::setCouleur(Couleur c){
-    couleur = c;
+Site::~Site(){
+
+}
+
+void Depart::action(){
+
+}
+
+void Sortie::action(){
+
+}
+
+void Objectif::action(){
+
+}
+
+void Porte::action(){
+
 }
