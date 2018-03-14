@@ -7,8 +7,7 @@
 class Site
 {
 public:
-    Site();
-    ~Site();
+    virtual ~Site(){}
     virtual void action() = 0;
 };
 
@@ -18,8 +17,7 @@ public:
 class Depart : public Site
 {
 public:
-    Depart(){}
-    virtual void action();
+   void action() override;
 };
 
 //--------------------------------------------------------
@@ -28,8 +26,7 @@ public:
 class Sortie : public Site
 {
 public:
-    Sortie(){}
-    virtual void action();
+    void action() override;
 };
 
 //--------------------------------------------------------
@@ -38,8 +35,7 @@ public:
 class Objectif : public Site
 {
 public:
-    Objectif(){}
-    virtual void action();
+    void action() override;
 };
 
 //--------------------------------------------------------
@@ -48,7 +44,6 @@ public:
 class Porte : public Site
 {
 public:
-    Porte(){}
-    virtual void action();
+    void action() override;
 };
 #endif // SITE_H
