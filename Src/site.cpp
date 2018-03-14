@@ -1,18 +1,18 @@
 #include "site.hpp"
 
-void Depart::action(){
+void Depart::action() const{
 
 }
 
-void Sortie::action(){
+void Sortie::action() const{
 
 }
 
-void Objectif::action(){
+void Objectif::action() const{
 
 }
 
-void Porte::action(){
+void Porte::action() const{
 
 }
 

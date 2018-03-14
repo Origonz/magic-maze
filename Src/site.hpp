@@ -17,7 +17,8 @@ public:
 class Depart : public Site
 {
 public:
-   void action() override;
+    void action() const;
+    ~Depart(){}
 };
 
 //--------------------------------------------------------
@@ -26,7 +27,8 @@ public:
 class Sortie : public Site
 {
 public:
-    void action() override;
+    void action() const;
+    ~Sortie(){}
 };
 
 //--------------------------------------------------------
@@ -35,7 +37,8 @@ public:
 class Objectif : public Site
 {
 public:
-    void action() override;
+    void action() const;
+    ~Objectif(){}
 };
 
 //--------------------------------------------------------
@@ -44,6 +47,7 @@ public:
 class Porte : public Site
 {
 public:
-    void action() override;
+    void action() const;
+    ~Porte(){}
 };
 #endif // SITE_H
