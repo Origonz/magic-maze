@@ -8,7 +8,7 @@ class Site
 {
 public:
     virtual ~Site(){}
-    virtual void action() = 0;
+    virtual void action(){return;}
 };
 
 //--------------------------------------------------------
