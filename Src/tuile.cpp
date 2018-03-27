@@ -33,8 +33,38 @@ namespace MMaze {
   }
   
   bool Tuile::accessible(Case c) const {
-    /* remplacez ce code */
-    return false ;
+    vector<Case> done;
+    vector<Case> not_done;
+    vector<Case> voisins;
+    Direction directions[4] = {HAUT, BAS, GAUCHE, DROITE};
+    not_done.push_back(c);
+    for (unsigned int i=0; i<not_done.size(); i++) {
+      Case encours = not_done[i];
+      //Trouvez tous les voisins de la case en cours
+      for (int i=0; i<4; i++) {
+	Case v = encours.voisine(directions[i]);
+	if (!isin(done, v.index())) {
+	  voisins.push_back(v);
+	}
+      }
+      //Trouver tous les voisins accessibles de la case en cours
+      for (unsigned int i=0; i<voisins.size(); i++) {
+	Mur *m = new Mur(encours, voisins[i]);
+	if (mur(*m) == false) {
+	  not_done.push_back(voisins[i]);
+	}
+      }
+      done.push_back(encours);
+      not_done.erase(not_done.begin());
+    }
+    //Si l'unes des portes a été traitée, alors elle est accessible
+    int portes[4] = {2,4,11,13};
+    for (int i=0; i<4; i++) {
+      if (isin(done, portes[i])) {
+	return true;
+      }
+    }
+    return false;
   }
 
   void Tuile::placement_sortie(){
@@ -126,6 +156,15 @@ namespace MMaze {
     }
     t.afficher_horizontal(out, 4) ;
     return out ;
+  }
+
+  bool Tuile::isin(vector<Case> v, unsigned int index) const {
+    for (unsigned int i=0; i<v.size(); i++) {
+      if (v[i].index() == index) {
+	return true;
+      }
+    }
+    return false;
   }
   
 } //end of namespace MMaze

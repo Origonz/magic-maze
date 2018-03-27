@@ -8,6 +8,8 @@
 #include <vector>
 #include <iostream>
 
+using namespace std;
+
 namespace MMaze {
 
   class Tuile {
@@ -24,6 +26,9 @@ namespace MMaze {
 
     //affichage
     friend std::ostream& operator<<(std::ostream& out, const Tuile& t) ;
+
+    //Fonctions utiles
+    bool isin(vector<Case> v, unsigned int index) const;
 
   private :
 
