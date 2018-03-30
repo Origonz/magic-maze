@@ -33,7 +33,7 @@ namespace MMaze {
     if(index_ > 11) {
       throw std::domain_error("la case n'a pas de voisine basse") ;
     }
-    return Case(index_ + 4) ;
+    return Case(index_ + 4) ;   
   }
 
   Case Case::gauche() const {

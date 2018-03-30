@@ -39,23 +39,36 @@ namespace MMaze {
     Direction directions[4] = {HAUT, BAS, GAUCHE, DROITE};
     not_done.push_back(c);
     for (unsigned int i=0; i<not_done.size(); i++) {
+      i = 0;
       Case encours = not_done[i];
       //Trouvez tous les voisins de la case en cours
-      for (int i=0; i<4; i++) {
-	Case v = encours.voisine(directions[i]);
-	if (!isin(done, v.index())) {
-	  voisins.push_back(v);
+      for (int j=0; j<4; j++) {
+	//Case v = encours;
+	//cout<<"Initialisation "<<v.index()<<endl;
+	try {
+	  Case v = encours.voisine(directions[j]);
+	  if (!isin(done, v.index())) {
+	    voisins.push_back(v);
+	  }
+	  cout<<"Une case voisine de "<<encours.index() <<" est "<< v.index()<<endl;
+	} catch (exception e) {
+	  //Rien
 	}
+	
+      }
+      for(unsigned int x=0;x<voisins.size(); x++) {
+	cout<<"voisin:: "<< voisins[x].index()<<endl;
       }
       //Trouver tous les voisins accessibles de la case en cours
-      for (unsigned int i=0; i<voisins.size(); i++) {
-	Mur *m = new Mur(encours, voisins[i]);
-	if (mur(*m) == false) {
-	  not_done.push_back(voisins[i]);
+      for (unsigned int k=0; k<voisins.size(); k++) {
+	Mur *m = new Mur(encours, voisins[k]);
+	if (mur(*m) == false && !isin(not_done, voisins[k].index())) {
+	  not_done.push_back(voisins[k]);
 	}
       }
       done.push_back(encours);
       not_done.erase(not_done.begin());
+      voisins.clear();
     }
     //Si l'unes des portes a été traitée, alors elle est accessible
     int portes[4] = {2,4,11,13};
