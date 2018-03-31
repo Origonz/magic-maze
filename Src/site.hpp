@@ -1,6 +1,6 @@
 #ifndef SITE_H
 #define SITE_H
-
+#include <iostream>
 //--------------------------------------------------------
 //      Site (classe abstraite)
 //--------------------------------------------------------
@@ -9,6 +9,7 @@ class Site
 public:
     virtual ~Site(){}
     virtual void action(){return;}
+    //friend std::ostream& operator<<(std::ostream& out, const Site& s){out<<"   ";return out;}
 };
 
 //--------------------------------------------------------
@@ -18,6 +19,7 @@ class Depart : public Site
 {
 public:
     void action() const;
+    //friend std::ostream& operator<<(std::ostream& out, const Site& s){out<<" d ";return out;}
     ~Depart(){}
 };
 
@@ -28,6 +30,7 @@ class Sortie : public Site
 {
 public:
     void action() const;
+    //friend std::ostream& operator<<(std::ostream& out, const Site& s){out<<" s ";return out;}
     ~Sortie(){}
 };
 
@@ -38,6 +41,7 @@ class Objectif : public Site
 {
 public:
     void action() const;
+    //friend std::ostream& operator<<(std::ostream& out, const Site& s){out<<" o ";return out;}
     ~Objectif(){}
 };
 
@@ -48,6 +52,7 @@ class Porte : public Site
 {
 public:
     void action() const;
+    //friend std::ostream& operator<<(std::ostream& out, const Site&){out<<" p ";return out;}
     ~Porte(){}
 };
 #endif // SITE_H

@@ -26,6 +26,7 @@ namespace MMaze {
 
   extern const char* txt_colors[5] ;
   extern const char* bg_colors[5] ;
+  extern const Couleur colors[5];
 
 } //end of namespace MMaze
 

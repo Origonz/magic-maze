@@ -9,7 +9,7 @@ using namespace MMaze ;
 
 int main() {
 
-  Tuile t ;
+  Tuile t(true) ;
 
   std::cout << t << std::endl ;
 

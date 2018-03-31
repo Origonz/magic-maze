@@ -15,4 +15,3 @@ void Objectif::action() const{
 void Porte::action() const{
     return;
 }
-

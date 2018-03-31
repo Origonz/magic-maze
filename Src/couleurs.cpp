@@ -17,6 +17,8 @@ namespace MMaze {
 
   const char* txt_colors[5] = {TXT_DEFAULT, TXT_JAUNE, TXT_VERT, TXT_ORANGE, TXT_VIOLET} ;
   const char* bg_colors[5] = {BG_DEFAULT, BG_JAUNE, BG_VERT, BG_ORANGE, BG_VIOLET} ;
+  const Couleur colors[5] = {AUCUNE, JAUNE, VERT, ORANGE, VIOLET} ;
+
 
 } //end of namespace MMaze
 

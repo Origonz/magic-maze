@@ -9,7 +9,7 @@ using namespace std;
 
 namespace MMaze {
 
-  Tuile::Tuile(bool d) {
+  Tuile::Tuile(bool d /*=false*/) {
     srand(time(NULL));
     for (unsigned int i=0; i<4; i++) {
       for (unsigned int j=0; j<4; j++) {
@@ -84,6 +84,7 @@ namespace MMaze {
       int portes[] = {2,4,11,13};
       int p = rand()%4;
       sites[portes[p]] = new Sortie();
+      couleurs[portes[p]] = colors[rand()%4+1];
       //TODO -> voir pour la gestion des couleurs
   }
 
@@ -106,6 +107,7 @@ namespace MMaze {
   void Tuile::placement_objectif(){
      int o = rand()%16;
      sites[o] = new Objectif();
+     couleurs[o] = colors[rand()%4+1];
     //TODO -> voir pour la gestion des couleurs
   }
 
@@ -146,7 +148,7 @@ namespace MMaze {
     assert(i < 4) ;
     out << "|" ;
     for(unsigned int m = 0; m < 4; ++m) {
-      out << "   " ;
+      out << bg_colors[couleurs[4*i+m]] << /*sites[4+i+m]*/ "   " << TXT_CLEAR;
       if(m < 3) {
 	Case left = Case(i, m) ;
 	Case right = Case(i, m+1) ;
