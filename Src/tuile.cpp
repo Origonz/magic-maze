@@ -16,6 +16,7 @@ namespace MMaze {
         tab[4*i+j] = new Case(i, j);
         couleurs[4*i+j] = Couleur::AUCUNE;
         joueur[4*i+j] = Couleur::AUCUNE;
+        sites[4*i+j] = new Site();
       }
     }
     for(int i=0;i<24;i++){
@@ -130,7 +131,7 @@ namespace MMaze {
     else if (rand()%2)
         placement_sortie();
   }
-  
+
   void Tuile::afficher_horizontal(std::ostream& out, unsigned int i) const {
     assert(i < 5) ;
     if(i == 0 || i == 4) {
@@ -153,7 +154,7 @@ namespace MMaze {
     assert(i < 4) ;
     out << "|" ;
     for(unsigned int m = 0; m < 4; ++m) {
-      out << bg_colors[couleurs[4*i+m]] << /*sites[4+i+m]*/ "  " << TXT_CLEAR;
+      out << bg_colors[couleurs[4*i+m]] << sites[4*i+m]->affiche()<< " " <<TXT_CLEAR;
       if(joueur[4*i+m] != Couleur::AUCUNE){
           out << txt_colors[joueur[4*i+m]] << BG_DEFAULT << "p" << TXT_CLEAR;
       }else{
