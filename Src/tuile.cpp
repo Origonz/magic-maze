@@ -15,6 +15,7 @@ namespace MMaze {
       for (unsigned int j=0; j<4; j++) {
         tab[4*i+j] = new Case(i, j);
         couleurs[4*i+j] = Couleur::AUCUNE;
+        joueur[4*i+j] = Couleur::AUCUNE;
       }
     }
     for(int i=0;i<24;i++){
@@ -93,6 +94,10 @@ namespace MMaze {
       sites[6] = new Depart();
       sites[9] = new Depart();
       sites[10] = new Depart();
+      joueur[5] = Couleur::VERT;
+      joueur[6] = Couleur::JAUNE;
+      joueur[9] = Couleur::VIOLET;
+      joueur[10] = Couleur::ORANGE;
       couleurs[5] = Couleur::VERT;
       couleurs[6] = Couleur::JAUNE;
       couleurs[9] = Couleur::VIOLET;
@@ -148,7 +153,12 @@ namespace MMaze {
     assert(i < 4) ;
     out << "|" ;
     for(unsigned int m = 0; m < 4; ++m) {
-      out << bg_colors[couleurs[4*i+m]] << /*sites[4+i+m]*/ "   " << TXT_CLEAR;
+      out << bg_colors[couleurs[4*i+m]] << /*sites[4+i+m]*/ "  " << TXT_CLEAR;
+      if(joueur[4*i+m] != Couleur::AUCUNE){
+          out << txt_colors[joueur[4*i+m]] << BG_DEFAULT << "p" << TXT_CLEAR;
+      }else{
+          out << bg_colors[couleurs[4*i+m]] << " " << TXT_CLEAR;
+      }
       if(m < 3) {
 	Case left = Case(i, m) ;
 	Case right = Case(i, m+1) ;

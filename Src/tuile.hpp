@@ -44,6 +44,7 @@ namespace MMaze {
     Case* tab[16];
     Site* sites[16];
     Couleur couleurs[16];
+    Couleur joueur[16];
     bool walls[24];
   } ;
 
