@@ -8,10 +8,10 @@
 using namespace MMaze ;
 
 int main() {
-  Tuile t(false);
+  Tuile t(true);
   std::cout << t << std::endl ;
   Tuile* tab[5];
-  for (int i=0; i<5; i++) {
+  for (int i=0; i<3; i++) {
     tab[i] = new Tuile();
     std::cout << *tab[i] << std::endl ;
   }
@@ -24,7 +24,7 @@ int main() {
     }*/
   
   //utilisation des couleurs
-  std::cout
+  /*std::cout
     << TXT_JAUNE << "&"
     << TXT_ORANGE << "&"
     << TXT_VERT << "&"
@@ -35,7 +35,7 @@ int main() {
     << BG_VERT << "&"
     << BG_VIOLET << "&"
     << TXT_CLEAR
-    << std::endl ;
+    << std::endl ;*/
 
   return 0 ;
 }

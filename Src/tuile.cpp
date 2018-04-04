@@ -19,6 +19,9 @@ namespace MMaze {
         sites[4*i+j] = new Site();
       }
     }
+    for (int i = 0; i < 24; i++) {
+      walls[i] = true;
+    }
     if (d) {
       tuile_de_depart();
     } else {
@@ -189,15 +192,12 @@ namespace MMaze {
 
   void Tuile::tuile_de_depart() {
     placement_depart();
-    for(int i=0;i<24;i++){
-      walls[i] = true;
+    while (!valide()) {
+      casserMur();
     }
   }
 
   void Tuile::tuile_classique() {
-    for (int i = 0; i < 24; i++) {
-      walls[i] = true;
-    }
     placement_site();
     while (!valide()) {
       casserMur();

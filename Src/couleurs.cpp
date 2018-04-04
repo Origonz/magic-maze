@@ -2,6 +2,7 @@
 
 namespace MMaze {
 
+  RandomUniform rd;
   const char* TXT_CLEAR = "\x1B[0m" ;
   const char* TXT_BOLD = "\x1B[1m" ;
   const char* TXT_DEFAULT = "\x1B[39m" ;
@@ -21,9 +22,6 @@ namespace MMaze {
   Couleur colorsO[5] = {AUCUNE, JAUNE, VERT, ORANGE, VIOLET} ;
   int nb_O = 4;
   int nb_S = 4;
-
-  RandomUniform rd;
-
 
 } //end of namespace MMaze
 
