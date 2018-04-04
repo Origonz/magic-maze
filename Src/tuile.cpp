@@ -10,7 +10,6 @@ using namespace std;
 namespace MMaze {
 
   Tuile::Tuile(bool d /*=false*/) {
-    srand(time(NULL));
     for (unsigned int i=0; i<4; i++) {
       for (unsigned int j=0; j<4; j++) {
         tab[4*i+j] = new Case(i, j);
@@ -84,9 +83,12 @@ namespace MMaze {
 
   void Tuile::placement_sortie(){
       int portes[] = {2,4,11,13};
-      int p = rand()%4;
+      int p = rd.generer(3);
       sites[portes[p]] = new Sortie();
-      couleurs[portes[p]] = colors[rand()%4+1];
+      int a = rd.generer(nb_S-1)+1;
+      couleurs[portes[p]] = colorsS[a];
+      colorsS[a] = colorsS[nb_S];
+      nb_S--;
       //TODO -> voir pour la gestion des couleurs
   }
 
@@ -111,10 +113,12 @@ namespace MMaze {
   }
 
   void Tuile::placement_objectif(){
-     int o = rand()%16;
+     int o = rd.generer(15);
      sites[o] = new Objectif();
-     couleurs[o] = colors[rand()%4+1];
-    //TODO -> voir pour la gestion des couleurs
+     int a = rd.generer((nb_O-1))+1;
+     couleurs[o] = colorsO[a];
+     colorsO[a] = colorsO[nb_O];
+     nb_O--;
   }
 
   void Tuile::placement_porte(){
@@ -126,9 +130,9 @@ namespace MMaze {
 
   void Tuile::placement_site(){
     placement_porte();
-    if(rand()%2)
+    if(nb_O && rd.generer(1))
         placement_objectif();
-    else if (rand()%2)
+    else if (nb_S && rd.generer(1))
         placement_sortie();
   }
 
@@ -156,7 +160,7 @@ namespace MMaze {
     for(unsigned int m = 0; m < 4; ++m) {
       out << bg_colors[couleurs[4*i+m]] << sites[4*i+m]->affiche()<< " " <<TXT_CLEAR;
       if(joueur[4*i+m] != Couleur::AUCUNE){
-          out << txt_colors[joueur[4*i+m]] << BG_DEFAULT << "p" << TXT_CLEAR;
+          out << txt_colors[joueur[4*i+m]] << BG_DEFAULT << "j" << TXT_CLEAR;
       }else{
           out << bg_colors[couleurs[4*i+m]] << " " << TXT_CLEAR;
       }
