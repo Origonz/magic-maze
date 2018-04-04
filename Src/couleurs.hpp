@@ -1,5 +1,6 @@
 #ifndef MMAZE_TERM_COLORS_HPP
 #define MMAZE_TERM_COLORS_HPP
+#include "RandomUniform.hpp"
 
 namespace MMaze {
 
@@ -26,7 +27,12 @@ namespace MMaze {
 
   extern const char* txt_colors[5] ;
   extern const char* bg_colors[5] ;
-  extern const Couleur colors[5];
+  extern Couleur colorsO[5];
+  extern Couleur colorsS[5];
+  extern int nb_S;
+  extern int nb_O;
+
+  extern RandomUniform rd;
 
 } //end of namespace MMaze
 

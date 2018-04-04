@@ -14,8 +14,6 @@ namespace MMaze {
       return distribution(generator);
     }
   };
-
-  extern RandomUniform rd;
 }
 
 #endif
