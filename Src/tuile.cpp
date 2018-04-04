@@ -1,5 +1,6 @@
 #include "tuile.hpp"
 #include "couleurs.hpp"
+#include "RandomUniform.hpp"
 
 #include <cassert>
 #include <iostream>
@@ -12,21 +13,34 @@ namespace MMaze {
   Tuile::Tuile(bool d /*=false*/) {
     for (unsigned int i=0; i<4; i++) {
       for (unsigned int j=0; j<4; j++) {
-        tab[4*i+j] = new Case(i, j);
+        tab[4*i+j] = 4*i+j;
         couleurs[4*i+j] = Couleur::AUCUNE;
         joueur[4*i+j] = Couleur::AUCUNE;
         sites[4*i+j] = new Site();
       }
     }
-    for(int i=0;i<24;i++){
-        walls[i] = true;
+    if (d) {
+      tuile_de_depart();
+    } else {
+      tuile_classique();
     }
-    if(d){
-         placement_depart();
-    }else {
-        placement_site();
-    }
+  }
 
+  //Trouver une case qui est sa propre représentante
+  int Tuile::find(int c) {
+    if (tab[c] == c) { 
+      return c;
+    }
+    return find(tab[c]);
+  }
+
+  void Tuile::unionFind(int c1, int c2){
+    int classe1 = find(c1);
+    int classe2 = find(c2);
+    
+    if(classe1 != classe2){
+      tab[classe1] = classe2;
+    }
   }
   
   bool Tuile::mur(Mur m) const {
@@ -44,22 +58,20 @@ namespace MMaze {
       Case encours = not_done[i];
       //Trouvez tous les voisins de la case en cours
       for (int j=0; j<4; j++) {
-	//Case v = encours;
-	//cout<<"Initialisation "<<v.index()<<endl;
 	try {
 	  Case v = encours.voisine(directions[j]);
 	  if (!isin(done, v.index())) {
 	    voisins.push_back(v);
 	  }
-	  cout<<"Une case voisine de "<<encours.index() <<" est "<< v.index()<<endl;
+	  // cout<<"Une case voisine de "<<encours.index() <<" est "<< v.index()<<endl;
 	} catch (exception e) {
 	  //Rien
 	}
 	
       }
-      for(unsigned int x=0;x<voisins.size(); x++) {
+      /*for(unsigned int x=0;x<voisins.size(); x++) {
 	cout<<"voisin:: "<< voisins[x].index()<<endl;
-      }
+	}*/
       //Trouver tous les voisins accessibles de la case en cours
       for (unsigned int k=0; k<voisins.size(); k++) {
 	Mur *m = new Mur(encours, voisins[k]);
@@ -89,27 +101,26 @@ namespace MMaze {
       couleurs[portes[p]] = colorsS[a];
       colorsS[a] = colorsS[nb_S];
       nb_S--;
-      //TODO -> voir pour la gestion des couleurs
   }
 
   void Tuile::placement_depart(){
-      sites[5] = new Depart();
-      sites[6] = new Depart();
-      sites[9] = new Depart();
-      sites[10] = new Depart();
-      joueur[5] = Couleur::VERT;
-      joueur[6] = Couleur::JAUNE;
-      joueur[9] = Couleur::VIOLET;
-      joueur[10] = Couleur::ORANGE;
-      couleurs[5] = Couleur::VERT;
-      couleurs[6] = Couleur::JAUNE;
-      couleurs[9] = Couleur::VIOLET;
-      couleurs[10] = Couleur::ORANGE;
-      couleurs[2] = Couleur::VERT;
-      couleurs[4] = Couleur::JAUNE;
-      couleurs[11] = Couleur::VIOLET;
-      couleurs[13] = Couleur::ORANGE;
-      placement_porte();
+    sites[5] = new Depart();
+    sites[6] = new Depart();
+    sites[9] = new Depart();
+    sites[10] = new Depart();
+    joueur[5] = Couleur::VERT;
+    joueur[6] = Couleur::JAUNE;
+    joueur[9] = Couleur::VIOLET;
+    joueur[10] = Couleur::ORANGE;
+    couleurs[5] = Couleur::VERT;
+    couleurs[6] = Couleur::JAUNE;
+    couleurs[9] = Couleur::VIOLET;
+    couleurs[10] = Couleur::ORANGE;
+    couleurs[2] = Couleur::VERT;
+    couleurs[4] = Couleur::JAUNE;
+    couleurs[11] = Couleur::VIOLET;
+    couleurs[13] = Couleur::ORANGE;
+    placement_porte();
   }
 
   void Tuile::placement_objectif(){
@@ -125,18 +136,75 @@ namespace MMaze {
   }
 
   void Tuile::placement_porte(){
-      sites[2] = new Porte();
-      sites[4] = new Porte();
-      sites[11] = new Porte();
-      sites[13] = new Porte();
+    sites[2] = new Porte();
+    sites[4] = new Porte();
+    sites[11] = new Porte();
+    sites[13] = new Porte();
   }
 
   void Tuile::placement_site(){
     placement_porte();
     if(nb_O && rd.generer(1))
-        placement_objectif();
+      placement_objectif();
     else if (nb_S && rd.generer(1))
-        placement_sortie();
+      placement_sortie();
+  }
+
+  //Casser les murs
+  void Tuile::casserMur() {
+    Direction directions[4] = {HAUT, BAS, GAUCHE, DROITE};
+    int m;
+    do {
+      m = rd.generer(23);
+    } while (walls[m] == false);
+    
+    //Casser le mur
+    walls[m] = false;
+    
+    if (m < 12) {
+      try {
+	Case tmp = Case(m);
+	for (int i = 0; i < 4; i++) {
+	  if (accessible(tmp.voisine(directions[i]))) {
+	    unionFind(m, m + 4);
+	  }
+	}
+      } catch (exception e) {
+	//Rien
+      }
+    } else {
+      int colonne = (m - 12) / 4;
+      int ligne = m % 4;
+      unionFind(colonne+ligne*4, colonne+ligne*4+1);
+    }
+  }
+
+  //Validité de la tuile
+  bool Tuile::valide() {
+    for (int i = 0; i < 16; i++) {
+      Case *c = new Case(i);
+      if(!accessible(*c)) {
+	return false;
+      }
+    }
+    return true;
+  }
+
+  void Tuile::tuile_de_depart() {
+    placement_depart();
+    for(int i=0;i<24;i++){
+      walls[i] = true;
+    }
+  }
+
+  void Tuile::tuile_classique() {
+    for (int i = 0; i < 24; i++) {
+      walls[i] = true;
+    }
+    placement_site();
+    while (!valide()) {
+      casserMur();
+    }
   }
 
   void Tuile::afficher_horizontal(std::ostream& out, unsigned int i) const {

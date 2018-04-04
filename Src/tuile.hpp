@@ -2,6 +2,8 @@
 #define MMAZE_TUILE_HPP
 
 #include "case.hpp"
+#include "melangeur.hpp"
+#include "RandomUniform.hpp"
 #include "mur.hpp"
 #include "site.hpp"
 #include "couleurs.hpp"
@@ -28,6 +30,12 @@ namespace MMaze {
     friend std::ostream& operator<<(std::ostream& out, const Tuile& t) ;
 
     //Fonctions utiles
+    int find(int c);
+    void unionFind(int c1, int c2);
+    bool valide();
+    void casserMur();
+    void tuile_de_depart();
+    void tuile_classique();
     bool isin(vector<Case> v, unsigned int index) const;
 
   private :
@@ -41,11 +49,12 @@ namespace MMaze {
     void placement_depart();
     void placement_site();
 
-    Case* tab[16];
+    int tab[16];
     Site* sites[16];
     Couleur couleurs[16];
     Couleur joueur[16];
     bool walls[24];
+    RandomUniform r;
   } ;
 
 } //end of namespace MMaze
