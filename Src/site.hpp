@@ -1,6 +1,9 @@
-#ifndef SITE_H
-#define SITE_H
+#ifndef MMAZE_SITE_HPP
+#define MMAZE_SITE_HPP
+
 #include <iostream>
+
+namespace MMaze {
 //--------------------------------------------------------
 //      Site (classe abstraite)
 //--------------------------------------------------------
@@ -60,4 +63,5 @@ public:
     //friend std::ostream& operator<<(std::ostream& out, const Site&){out<<" p ";return out;}
     ~Porte(){}
 };
-#endif // SITE_H
+}
+#endif // MMAZE_SITE_HPP

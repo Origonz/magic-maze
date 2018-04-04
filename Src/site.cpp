@@ -1,4 +1,5 @@
 #include "site.hpp"
+namespace MMaze {
 
 void Depart::action() const{
     return;
@@ -14,4 +15,6 @@ void Objectif::action() const{
 
 void Porte::action() const{
     return;
+}
+
 }

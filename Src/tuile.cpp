@@ -128,6 +128,9 @@ namespace MMaze {
 
   void Tuile::placement_objectif(){
      int o = rd.generer(15);
+     while(o == 2 || o == 4 || o == 11 || o == 13){
+         o = rd.generer(15);
+     }
      sites[o] = new Objectif();
      int a = rd.generer((nb_O-1))+1;
      couleurs[o] = colorsO[a];
