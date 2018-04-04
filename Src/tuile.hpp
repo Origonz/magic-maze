@@ -2,7 +2,6 @@
 #define MMAZE_TUILE_HPP
 
 #include "case.hpp"
-#include "melangeur.hpp"
 #include "RandomUniform.hpp"
 #include "mur.hpp"
 #include "site.hpp"

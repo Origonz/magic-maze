@@ -1,11 +1,21 @@
-#ifndef SUPERMARCHE_H
-#define SUPERMARCHE_H
+#ifndef MMAZE_SUPERMARCHE_HPP
+#define MMAZE_SUPERMARCHE_HPP
 
+#include "melangeur.hpp"
+#include "tuile.hpp"
 
-class SuperMarche
-{
+namespace MMaze {
+
+class SuperMarche{
+private:
+    Melangeur* mel;
+    vector<Tuile> map;
+
 public:
     SuperMarche();
-};
+    void Affiche();
+    };
 
-#endif // SUPERMARCHE_H
+} //end of namespace MMaze
+
+#endif

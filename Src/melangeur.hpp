@@ -1,6 +1,5 @@
 #ifndef MMAZE_MELANGEUR_HPP
 #define MMAZE_MELANGEUR_HPP
-#include <time.h>
 #include <cstring>
 #include <cstdio>
 #include <cstdlib>
@@ -17,7 +16,6 @@ namespace MMaze {
     char* data;
     int size;
     int capacite;
-    std::default_random_engine generator;
     
   public :
     

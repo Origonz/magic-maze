@@ -1,5 +1,5 @@
 #include "melangeur.hpp"
-
+#include "couleurs.hpp"
 using namespace std;
 
 namespace MMaze {
@@ -27,8 +27,12 @@ void Melangeur::retirer(void* elem) {
   if (taille() == 0) {
     exit(EXIT_FAILURE);
   }
-  uniform_int_distribution<int> distribution(0, taille() - 1);
-  int index = distribution(generator);
+  if(taille()==1){
+      memcpy(elem, data, nb_octets);
+      size -= 1;
+      return;
+  }
+  int index = rd.generer(taille()-1);
   memcpy(elem, data + nb_octets * index, nb_octets);
   memcpy(data + index * nb_octets, data + nb_octets * (taille() - 1), nb_octets);
   size -= 1;
