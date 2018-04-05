@@ -1,7 +1,6 @@
 #include "case.hpp"
-
-#include <cassert>
-#include <stdexcept>
+#include<assert.h>
+#include<iostream>
 
 namespace MMaze {
 

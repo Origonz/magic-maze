@@ -1,8 +1,6 @@
 #ifndef MMAZE_SITE_HPP
 #define MMAZE_SITE_HPP
 
-#include <iostream>
-
 namespace MMaze {
 //--------------------------------------------------------
 //      Site (classe abstraite)

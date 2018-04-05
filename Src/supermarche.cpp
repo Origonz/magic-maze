@@ -1,13 +1,12 @@
 #include "supermarche.hpp"
-#include<iostream>
 
 namespace MMaze {
 
 SuperMarche::SuperMarche()
 {
   mel = new Melangeur(sizeof(Tuile));
-  map  = vector<InfoTuile>();
-  map.push_back(InfoTuile(new Tuile(true)));
+  map  = std::vector<InfoTuile>();
+  map.push_back(InfoTuile(new Tuile(0,true)));
 
   do{
       mel->inserer(new Tuile());
@@ -28,5 +27,15 @@ void SuperMarche::Affiche(){
     }
 }
 
+void SuperMarche::notify(int id,int p){
+    /*Tuile t(this,0);
+    mel->retirer(&t);
+    t.setId(map.size());
+    InfoTuile a(&t);
+    map.push_back(a);
+    map[id].voisin[p] = a.tuile;*/
+    std::cout<<"ça notifie !!!!!!!"<<std::endl;
+
+}
 
 }

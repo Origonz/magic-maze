@@ -1,11 +1,5 @@
 #ifndef MMAZE_MELANGEUR_HPP
 #define MMAZE_MELANGEUR_HPP
-#include <cstring>
-#include <cstdio>
-#include <cstdlib>
-#include <cstring>
-#include <cassert>
-#include <random>
 
 namespace MMaze {
 

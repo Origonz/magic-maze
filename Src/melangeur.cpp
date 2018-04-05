@@ -1,5 +1,9 @@
 #include "melangeur.hpp"
-#include "couleurs.hpp"
+#include "RandomUniform.hpp"
+#include<iostream>
+#include<cstring>
+#include<assert.h>
+
 using namespace std;
 
 namespace MMaze {

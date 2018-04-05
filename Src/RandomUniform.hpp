@@ -1,7 +1,7 @@
 #ifndef MMAZE_RANDOMUNIFORM_HPP
 #define MMAZE_RANDOMUNIFORM_HPP
+
 #include <random>
-#include <iostream>
 
 using namespace std;
 
@@ -20,6 +20,9 @@ namespace MMaze {
       return distribution(generator);
     }
   };
+
+
+  extern RandomUniform rd;
 }
 
 #endif
