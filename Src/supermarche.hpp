@@ -6,10 +6,22 @@
 
 namespace MMaze {
 
+struct InfoTuile
+{
+    Tuile* tuile;
+    Tuile* voisin[4];
+    InfoTuile(Tuile* t) {
+        tuile = t;
+        for(int i=0;i<4;i++){
+            voisin[i] = nullptr;
+        }
+    }
+};
+
 class SuperMarche{
 private:
     Melangeur* mel;
-    vector<Tuile> map;
+    vector<InfoTuile> map;
 
 public:
     SuperMarche();

@@ -6,8 +6,8 @@ namespace MMaze {
 SuperMarche::SuperMarche()
 {
   mel = new Melangeur(sizeof(Tuile));
-  map  = vector<Tuile>();
-  map.push_back(Tuile(true));
+  map  = vector<InfoTuile>();
+  map.push_back(InfoTuile(new Tuile(true)));
 
   do{
       mel->inserer(new Tuile());
@@ -23,7 +23,8 @@ void SuperMarche::Affiche(){
     std::cout<<"Nombre de Tuile : "<<mel->taille()<<std::endl<<std::endl;
     for(int i=0;i<10;i++){
         mel->retirer(&t);
-        std::cout<<t<<std::endl<<std::endl;
+        map.push_back(InfoTuile(&t));
+        std::cout<<*map[i].tuile<<std::endl<<std::endl;
     }
 }
 
