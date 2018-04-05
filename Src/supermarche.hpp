@@ -29,9 +29,11 @@ private:
 
 public:
     SuperMarche();
-    void Affiche();
+    void affiche();
     void notify(int id,int p);
     };
+
+extern SuperMarche marche;
 
 } //end of namespace MMaze
 

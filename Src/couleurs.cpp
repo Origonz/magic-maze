@@ -1,5 +1,4 @@
 #include "couleurs.hpp"
-#include "RandomUniform.hpp"
 
 namespace MMaze {
 
@@ -22,8 +21,6 @@ namespace MMaze {
   Couleur colorsO[5] = {AUCUNE, JAUNE, VERT, ORANGE, VIOLET} ;
   int nb_O = 4;
   int nb_S = 4;
-
-  RandomUniform rd;
 
 } //end of namespace MMaze
 

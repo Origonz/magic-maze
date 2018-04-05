@@ -2,14 +2,11 @@
 #define MMAZE_TUILE_HPP
 
 #include "case.hpp"
-#include "RandomUniform.hpp"
-#include "mur.hpp"
+#include "ostream"
 #include "site.hpp"
 #include "couleurs.hpp"
+#include "mur.hpp"
 #include <vector>
-#include <iostream>
-
-using namespace std;
 
 namespace MMaze {
 
@@ -17,7 +14,9 @@ namespace MMaze {
 
   public :
 
-    Tuile(bool d = false);
+    Tuile(int i = 0,bool d = false);
+
+    void setId(int i);
 
     //indique si deux cases voisines sont separees par un mur
     bool mur(Mur m) const ;
@@ -35,7 +34,9 @@ namespace MMaze {
     void casserMur();
     void tuile_de_depart();
     void tuile_classique();
-    bool isin(vector<Case> v, unsigned int index) const;
+    bool isin(std::vector<Case> v, unsigned int index) const;
+
+    void signal(int a);
 
   private :
 
@@ -53,6 +54,7 @@ namespace MMaze {
     Couleur couleurs[16];
     Couleur joueur[16];
     bool walls[24];
+    int id;
   } ;
 
 } //end of namespace MMaze
