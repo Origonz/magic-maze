@@ -32,11 +32,13 @@ namespace MMaze {
     //Fonctions utiles
     int find(int c);
     void unionFind(int c1, int c2);
-    bool valide();
+    void depart_valide();
+    void classique_valide();
     void casserMur();
     void tuile_de_depart();
     void tuile_classique();
     bool isin(vector<Case> v, unsigned int index) const;
+    bool estDans(vector<int> v, int i);
 
   private :
 
