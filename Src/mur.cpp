@@ -1,6 +1,5 @@
 #include "mur.hpp"
-
-#include <cassert>
+#include<assert.h>
 
 namespace MMaze {
 

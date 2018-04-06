@@ -1,16 +1,13 @@
 #include "tuile.hpp"
-#include "couleurs.hpp"
+#include "mur.hpp"
 #include "RandomUniform.hpp"
-
+#include "supermarche.hpp"
 #include <cassert>
-#include <iostream>
-#include <cstdlib>
-
-using namespace std;
 
 namespace MMaze {
 
-  Tuile::Tuile(bool d /*=false*/) {
+  Tuile::Tuile(int i /*=0*/, bool d /*=false*/) {
+    id = i;
     for (unsigned int i=0; i<4; i++) {
       for (unsigned int j=0; j<4; j++) {
         tab[4*i+j] = 4*i+j;
@@ -27,6 +24,10 @@ namespace MMaze {
     } else {
       tuile_classique();
     }
+  }
+
+  void Tuile::setId(int i){
+      id = i;
   }
 
   //Trouver une case qui est sa propre représentante
@@ -287,6 +288,10 @@ namespace MMaze {
       }
     }
     return false;
+  }
+  
+  void Tuile::signal(int a) {
+    marche.notify(id,a);
   }
   
 } //end of namespace MMaze

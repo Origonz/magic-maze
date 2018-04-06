@@ -1,11 +1,40 @@
-#ifndef SUPERMARCHE_H
-#define SUPERMARCHE_H
+#ifndef MMAZE_SUPERMARCHE_HPP
+#define MMAZE_SUPERMARCHE_HPP
 
+#include "tuile.hpp"
+#include "melangeur.hpp"
+#include<vector>
+#include<iostream>
 
-class SuperMarche
+namespace MMaze {
+
+struct InfoTuile
 {
-public:
-    SuperMarche();
+    Tuile* tuile;
+    Tuile* voisin[4];
+
+    InfoTuile(Tuile* t) {
+        tuile = t;
+        for(int i=0;i<4;i++){
+            voisin[i] = nullptr;
+        }
+    }
+
 };
 
-#endif // SUPERMARCHE_H
+class SuperMarche{
+private:
+    Melangeur* mel;
+    std::vector<InfoTuile> map;
+
+public:
+    SuperMarche();
+    void affiche();
+    void notify(int id,int p);
+    };
+
+extern SuperMarche marche;
+
+} //end of namespace MMaze
+
+#endif

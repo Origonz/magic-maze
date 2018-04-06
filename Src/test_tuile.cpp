@@ -1,6 +1,5 @@
-#include "tuile.hpp"
-#include "melangeur.hpp"
-#include "couleurs.hpp"
+#include "supermarche.hpp"
+
 
 #include <iostream>
 #include <cstdlib>
@@ -8,13 +7,21 @@
 using namespace MMaze ;
 
 int main() {
-  Tuile t(true);
-  std::cout << t << std::endl ;
-  Tuile* tab[5];
-  for (int i=0; i<3; i++) {
-    tab[i] = new Tuile();
-    std::cout << *tab[i] << std::endl ;
-  }
+
+    SuperMarche m;
+
+    m.Affiche();
+
+    Melangeur w(sizeof(Tuile));
+
+    w.inserer(new Tuile(true));
+
+    Tuile t;
+
+    w.retirer(&t);
+
+    std::cout<<t<<std::endl;
+
 
   /* Case *c = new Case(8);
   if (t.accessible(*c)) {

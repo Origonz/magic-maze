@@ -1,4 +1,5 @@
 #include "site.hpp"
+
 namespace MMaze {
 
 void Depart::action() const{
