@@ -6,7 +6,7 @@
 
 namespace MMaze {
 
-  Tuile::Tuile(int i /*=0*/, bool d /*=false*/) {
+  Tuile::Tuile(int i /*=0*/,bool d /*=false*/) {
     id = i;
     for (unsigned int i=0; i<4; i++) {
       for (unsigned int j=0; j<4; j++) {
@@ -289,8 +289,8 @@ namespace MMaze {
     }
     return false;
   }
-  
-  void Tuile::signal(int a) {
+
+  void Tuile::signal(int a){
     marche.notify(id,a);
   }
   
