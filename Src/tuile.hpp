@@ -8,6 +8,8 @@
 #include <ostream>
 #include <vector>
 
+using namespace std;
+
 namespace MMaze {
 
   class Tuile {
@@ -32,12 +34,13 @@ namespace MMaze {
     //Fonctions utiles
     int find(int c);
     void unionFind(int c1, int c2);
-    bool valide();
+    void depart_valide();
+    void classique_valide();
     void casserMur();
     void tuile_de_depart();
     void tuile_classique();
-    bool isin(std::vector<Case> v, unsigned int index) const;
-
+    bool isin(vector<Case> v, unsigned int index) const;
+    bool estDans(vector<int> v, int i);
     void signal(int a);
 
   private :

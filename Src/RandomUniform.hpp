@@ -11,7 +11,7 @@ namespace MMaze {
     default_random_engine generator;
   public:
     RandomUniform() {
-      std::random_device rd ;
+      random_device rd ;
       generator.seed(rd());
     }
     

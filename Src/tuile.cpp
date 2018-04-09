@@ -67,16 +67,11 @@ namespace MMaze {
 	  if (!isin(done, v.index())) {
 	    voisins.push_back(v);
 	  }
-	  // cout<<"Une case voisine de "<<encours.index() <<" est "<< v.index()<<endl;
 	} catch (exception e) {
 	  //Rien
 	}
 	
       }
-      /*for(unsigned int x=0;x<voisins.size(); x++) {
-	cout<<"voisin:: "<< voisins[x].index()<<endl;
-	}*/
-      //Trouver tous les voisins accessibles de la case en cours
       for (unsigned int k=0; k<voisins.size(); k++) {
 	Mur *m = new Mur(encours, voisins[k]);
 	if (mur(*m) == false && !isin(not_done, voisins[k].index())) {
@@ -183,29 +178,46 @@ namespace MMaze {
     }
   }
 
-  //Validité de la tuile
-  bool Tuile::valide() {
+  //Validité de la tuile de départ 
+  void Tuile::depart_valide() {
     for (int i = 0; i < 16; i++) {
       Case *c = new Case(i);
-      if(!accessible(*c)) {
-	return false;
+      if ((sites[i] -> affiche()) == 'd') {
+	while (!accessible(*c)) {
+	  casserMur();
+	} 
+      } 
+    }
+  }
+
+  //Validité tuile classique
+  void Tuile::classique_valide() {
+    int t[4] = {5, 6, 9, 10};
+    vector<int> s;
+    //Préparation des points de départ
+    for (int i = 0; i < 4; i++) {
+      s.push_back(t[i]);
+    }
+    //validation
+    for (int i = 0; i < 16; i++) {
+      Case *c = new Case(i);
+      if (((sites[i] -> affiche()) == 'o') ||
+	  estDans(s, i) || ((sites[i] -> affiche()) == 's')) {
+	while (!accessible(*c)) {
+	  casserMur();
+	} 
       }
     }
-    return true;
   }
 
   void Tuile::tuile_de_depart() {
     placement_depart();
-    while (!valide()) {
-      casserMur();
-    }
+    depart_valide();
   }
 
   void Tuile::tuile_classique() {
     placement_site();
-    while (!valide()) {
-      casserMur();
-    }
+    classique_valide();
   }
 
   void Tuile::afficher_horizontal(std::ostream& out, unsigned int i) const {
@@ -263,6 +275,15 @@ namespace MMaze {
   bool Tuile::isin(vector<Case> v, unsigned int index) const {
     for (unsigned int i=0; i<v.size(); i++) {
       if (v[i].index() == index) {
+	return true;
+      }
+    }
+    return false;
+  }
+
+  bool Tuile::estDans(vector<int> v, int i) {
+    for (unsigned int k = 0; k < v.size(); k++) {
+      if (v[k] == i) {
 	return true;
       }
     }
