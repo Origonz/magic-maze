@@ -2,10 +2,10 @@
 #define MMAZE_TUILE_HPP
 
 #include "case.hpp"
-#include "ostream"
 #include "site.hpp"
 #include "couleurs.hpp"
 #include "mur.hpp"
+#include <ostream>
 #include <vector>
 
 namespace MMaze {
@@ -17,6 +17,8 @@ namespace MMaze {
     Tuile(int i = 0,bool d = false);
 
     void setId(int i);
+
+    int getId(){return id;}
 
     //indique si deux cases voisines sont separees par un mur
     bool mur(Mur m) const ;
