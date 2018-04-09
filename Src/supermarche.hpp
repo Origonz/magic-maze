@@ -19,7 +19,6 @@ struct InfoTuile
             voisin[i] = nullptr;
         }
     }
-
 };
 
 class SuperMarche{

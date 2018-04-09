@@ -7,8 +7,10 @@ SuperMarche::SuperMarche()
   mel = new Melangeur(sizeof(Tuile));
   map  = std::vector<InfoTuile>();
   map.push_back(InfoTuile(new Tuile(true)));
+  int i = 0;
   do{
-      mel->inserer(new Tuile(0));
+      mel->inserer(new Tuile(i));
+      i++;
       if(nb_O == 0 && nb_S == 0){
           break;
       }
@@ -18,21 +20,23 @@ SuperMarche::SuperMarche()
 
 void SuperMarche::affiche(){
     Tuile t;
-    std::cout<<"Nombre de Tuile : "<<mel->taille()<<std::endl<<std::endl;
-    for(int i=0;i<10;i++){
-        mel->retirer(&t);
+    int taille = mel->taille();
+    std::cout<<"Nombre de Tuile : "<<taille<<std::endl<<std::endl;
+    for(int i=0;i<taille;i++){
+        t.setId(i);
         t.signal(10);
     }
 }
 
 void SuperMarche::notify(int id,int p){
-    /*Tuile t(this,0);
+    p = p%5;
+    Tuile t;
     mel->retirer(&t);
-    t.setId(map.size());
+    t.setId(map.size()-1);
     InfoTuile a(&t);
     map.push_back(a);
-    map[id].voisin[p] = a.tuile;*/
-    std::cout<<"Tuile "<<id<<" : ça notifie la porte "<<p<<std::endl;
+    map[id].voisin[p] = a.tuile;
+    std::cout<<*map[id].voisin[p]<<std::endl;
 
 }
 
