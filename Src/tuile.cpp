@@ -13,7 +13,6 @@ namespace MMaze {
       for (unsigned int j=0; j<4; j++) {
         tab[4*i+j] = 4*i+j;
         couleurs[4*i+j] = Couleur::AUCUNE;
-        joueur[4*i+j] = Couleur::AUCUNE;
         sites[4*i+j] = ' ';
       }
     }
@@ -32,7 +31,6 @@ namespace MMaze {
         for (unsigned int j=0; j<4; j++) {
           tab[4*i+j] = 4*i+j;
           couleurs[4*i+j] = Couleur::AUCUNE;
-          joueur[4*i+j] = Couleur::AUCUNE;
           sites[4*i+j] = ' ';
         }
       }
@@ -124,10 +122,6 @@ namespace MMaze {
     sites[6] = 'd';
     sites[9] = 'd';
     sites[10] = 'd';
-    joueur[5] = Couleur::VERT;
-    joueur[6] = Couleur::JAUNE;
-    joueur[9] = Couleur::VIOLET;
-    joueur[10] = Couleur::ORANGE;
     couleurs[5] = Couleur::VERT;
     couleurs[6] = Couleur::JAUNE;
     couleurs[9] = Couleur::VIOLET;
@@ -259,12 +253,12 @@ namespace MMaze {
     assert(i < 4) ;
     out << "|" ;
     for(unsigned int m = 0; m < 4; ++m) {
-      out << bg_colors[couleurs[4*i+m]] << sites[4*i+m]<< " " << TXT_CLEAR;
-      if(joueur[4*i+m] != Couleur::AUCUNE){
+      out << bg_colors[couleurs[4*i+m]] << sites[4*i+m]<< "  " << TXT_CLEAR;
+      /*if(joueur[4*i+m] != Couleur::AUCUNE){
           out << txt_colors[joueur[4*i+m]] << BG_DEFAULT << "j" << TXT_CLEAR;
       }else{
           out << bg_colors[couleurs[4*i+m]] << " " << TXT_CLEAR;
-      }
+      }*/
 
       if(m < 3) {
 	Case left = Case(i, m) ;

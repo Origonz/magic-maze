@@ -60,7 +60,6 @@ namespace MMaze {
     int tab[16];
     char sites[16];
     Couleur couleurs[16];
-    Couleur joueur[16];
     bool walls[24];
     int id;
   } ;
