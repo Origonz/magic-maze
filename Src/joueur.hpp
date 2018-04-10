@@ -10,10 +10,20 @@ class Joueur
 private:
     Couleur couleur;
     Tuile* tuile;
-    int position;
+    unsigned int position;
+
+    int chemin[16];
+
+
+    int place_ppetit();
+    int find(vector<Case*> v,int a);
 
 public:
-    Joueur();
+    void calculChemin();
+    Joueur(Couleur c,Tuile* t,int p);
+
 };
+
+}
 
 #endif // JOUEUR_HPP

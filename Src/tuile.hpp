@@ -4,8 +4,9 @@
 #include "case.hpp"
 #include "couleurs.hpp"
 #include "mur.hpp"
-#include <ostream>
+#include<iostream>
 #include <vector>
+#include<fstream>
 
 using namespace std;
 

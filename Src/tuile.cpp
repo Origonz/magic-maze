@@ -3,7 +3,7 @@
 #include "RandomUniform.hpp"
 #include "supermarche.hpp"
 #include <cassert>
-#include <fstream>
+//#include <fstream>
 
 namespace MMaze {
 
@@ -47,7 +47,7 @@ namespace MMaze {
 
   //Trouver une case qui est sa propre représentante
   int Tuile::find(int c) {
-    if (tab[c] == c) { 
+    if (tab[c] == c) {
       return c;
     }
     return find(tab[c]);
@@ -358,8 +358,9 @@ namespace MMaze {
                 }
             }
             fichier.close();  // on ferme le fichier
-         }else
+         }else{
             cerr << "Impossible d'ouvrir le fichier !" << endl;
+        }
   }
   
 } //end of namespace MMaze

@@ -3,8 +3,8 @@
 
 #include "tuile.hpp"
 #include "melangeur.hpp"
+#include "joueur.hpp"
 #include<vector>
-#include<iostream>
 
 namespace MMaze {
 
