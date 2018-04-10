@@ -13,7 +13,7 @@ namespace MMaze {
         tab[4*i+j] = 4*i+j;
         couleurs[4*i+j] = Couleur::AUCUNE;
         joueur[4*i+j] = Couleur::AUCUNE;
-        sites[4*i+j] = new Site();
+        sites[4*i+j] = ' ';
       }
     }
     for (int i = 0; i < 24; i++) {
@@ -95,7 +95,7 @@ namespace MMaze {
   void Tuile::placement_sortie(){
       int portes[] = {2,4,11,13};
       int p = rd.generer(3);
-      sites[portes[p]] = new Sortie();
+      sites[portes[p]] = 's';
       int a = rd.generer(nb_S-1)+1;
       couleurs[portes[p]] = colorsS[a];
       colorsS[a] = colorsS[nb_S];
@@ -103,10 +103,10 @@ namespace MMaze {
   }
 
   void Tuile::placement_depart(){
-    sites[5] = new Depart();
-    sites[6] = new Depart();
-    sites[9] = new Depart();
-    sites[10] = new Depart();
+    sites[5] = 'd';
+    sites[6] = 'd';
+    sites[9] = 'd';
+    sites[10] = 'd';
     joueur[5] = Couleur::VERT;
     joueur[6] = Couleur::JAUNE;
     joueur[9] = Couleur::VIOLET;
@@ -127,7 +127,7 @@ namespace MMaze {
      while(o == 2 || o == 4 || o == 11 || o == 13){
          o = rd.generer(15);
      }
-     sites[o] = new Objectif();
+     sites[o] = 'o';
      int a = rd.generer((nb_O-1))+1;
      couleurs[o] = colorsO[a];
      colorsO[a] = colorsO[nb_O];
@@ -135,10 +135,10 @@ namespace MMaze {
   }
 
   void Tuile::placement_porte(){
-    sites[2] = new Porte();
-    sites[4] = new Porte();
-    sites[11] = new Porte();
-    sites[13] = new Porte();
+    sites[2] = 'p';
+    sites[4] = 'p';
+    sites[11] = 'p';
+    sites[13] = 'p';
   }
 
   void Tuile::placement_site(){
@@ -182,7 +182,7 @@ namespace MMaze {
   void Tuile::depart_valide() {
     for (int i = 0; i < 16; i++) {
       Case *c = new Case(i);
-      if ((sites[i] -> affiche()) == 'd') {
+      if (sites[i] == 'd') {
 	while (!accessible(*c)) {
 	  casserMur();
 	} 
@@ -201,8 +201,8 @@ namespace MMaze {
     //validation
     for (int i = 0; i < 16; i++) {
       Case *c = new Case(i);
-      if (((sites[i] -> affiche()) == 'o') ||
-	  estDans(s, i) || ((sites[i] -> affiche()) == 's')) {
+      if ((sites[i] == 'o') ||
+      estDans(s, i) || (sites[i] == 's')) {
 	while (!accessible(*c)) {
 	  casserMur();
 	} 
@@ -242,7 +242,7 @@ namespace MMaze {
     assert(i < 4) ;
     out << "|" ;
     for(unsigned int m = 0; m < 4; ++m) {
-      out << bg_colors[couleurs[4*i+m]] << sites[4*i+m]->affiche()<< " " <<TXT_CLEAR;
+      out << bg_colors[couleurs[4*i+m]] << sites[4*i+m]<< " " <<TXT_CLEAR;
       if(joueur[4*i+m] != Couleur::AUCUNE){
           out << txt_colors[joueur[4*i+m]] << BG_DEFAULT << "j" << TXT_CLEAR;
       }else{

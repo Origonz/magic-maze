@@ -2,7 +2,6 @@
 #define MMAZE_TUILE_HPP
 
 #include "case.hpp"
-#include "site.hpp"
 #include "couleurs.hpp"
 #include "mur.hpp"
 #include <ostream>
@@ -55,7 +54,7 @@ namespace MMaze {
     void placement_site();
 
     int tab[16];
-    Site* sites[16];
+    char sites[16];
     Couleur couleurs[16];
     Couleur joueur[16];
     bool walls[24];
