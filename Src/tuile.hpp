@@ -17,6 +17,8 @@ namespace MMaze {
 
     Tuile(int i = 0,bool d = false);
 
+    Tuile(string path);
+
     void setId(int i);
 
     int getId(){return id;}
@@ -41,6 +43,7 @@ namespace MMaze {
     bool isin(vector<Case> v, unsigned int index) const;
     bool estDans(vector<int> v, int i);
     void signal(int a);
+    void importe(string path);
 
   private :
 
@@ -52,6 +55,7 @@ namespace MMaze {
     void placement_porte();
     void placement_depart();
     void placement_site();
+    int getInt_string(string s);
 
     int tab[16];
     char sites[16];

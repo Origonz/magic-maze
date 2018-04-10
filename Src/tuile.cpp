@@ -3,6 +3,7 @@
 #include "RandomUniform.hpp"
 #include "supermarche.hpp"
 #include <cassert>
+#include <fstream>
 
 namespace MMaze {
 
@@ -24,6 +25,22 @@ namespace MMaze {
     } else {
       tuile_classique();
     }
+  }
+
+  Tuile::Tuile(string path){
+      for (unsigned int i=0; i<4; i++) {
+        for (unsigned int j=0; j<4; j++) {
+          tab[4*i+j] = 4*i+j;
+          couleurs[4*i+j] = Couleur::AUCUNE;
+          joueur[4*i+j] = Couleur::AUCUNE;
+          sites[4*i+j] = ' ';
+        }
+      }
+
+      for (int i = 0; i < 24; i++) {
+        walls[i] = false;
+      }
+      importe(path);
   }
 
   void Tuile::setId(int i){
@@ -242,20 +259,23 @@ namespace MMaze {
     assert(i < 4) ;
     out << "|" ;
     for(unsigned int m = 0; m < 4; ++m) {
-      out << bg_colors[couleurs[4*i+m]] << sites[4*i+m]<< " " <<TXT_CLEAR;
+      out << bg_colors[couleurs[4*i+m]] << sites[4*i+m]<< " " << TXT_CLEAR;
       if(joueur[4*i+m] != Couleur::AUCUNE){
           out << txt_colors[joueur[4*i+m]] << BG_DEFAULT << "j" << TXT_CLEAR;
       }else{
           out << bg_colors[couleurs[4*i+m]] << " " << TXT_CLEAR;
       }
+
       if(m < 3) {
 	Case left = Case(i, m) ;
 	Case right = Case(i, m+1) ;
+
+
 	if(m < 3 && mur(Mur(left, right))) {
 	  out << "|" ;
 	} else {
 	  out << " " ;
-	}
+    }
       }
     }
     out << "|" ;
@@ -292,6 +312,60 @@ namespace MMaze {
 
   void Tuile::signal(int a){
     marche.notify(id,a);
+  }
+
+  int Tuile::getInt_string(string s){
+      char tab[2];
+      int o = 0;
+      for(unsigned int i=0;i<s.size();i++){
+          if(s[i] == '1' || s[i] == '2' || s[i] == '3'|| s[i] == '4'|| s[i] == '5'|| s[i] == '6' || s[i] == '7' || s[i] == '8' || s[i] == '9' || s[i] == '0'){
+              tab[o] = s[i];
+              o++;
+          }
+      }
+      return atoi(tab);
+  }
+
+  void Tuile::importe(string path){
+    ifstream fichier(path, ios::in);  // on ouvre le fichier en lecture
+        if(fichier){
+            string ligne; //Une variable pour stocker les lignes lues
+            if(getline(fichier, ligne) && ligne == "tuile"){
+                while(getline(fichier, ligne) && ligne != "fin"){
+                    if(ligne.find("mur") != string::npos){
+                        walls[getInt_string(ligne)] = true;
+                    }
+                    if(ligne.find("site") != string::npos){
+                        if(ligne.find("porte") != string::npos){
+                            sites[getInt_string(ligne)] = 'p';
+                        }
+                        if(ligne.find("objectif") != string::npos){
+                            sites[getInt_string(ligne)] = 'o';
+                        }
+                        if(ligne.find("sortie") != string::npos){
+                            sites[getInt_string(ligne)] = 's';
+                        }
+                        if(ligne.find("depart") != string::npos){
+                            sites[getInt_string(ligne)] = 'd';
+                        }
+                        if(ligne.find("violet") != string::npos){
+                            couleurs[getInt_string(ligne)] = Couleur::VIOLET;
+                        }
+                        if(ligne.find("vert") != string::npos){
+                            couleurs[getInt_string(ligne)] = Couleur::VERT;
+                        }
+                        if(ligne.find("jaune") != string::npos){
+                            couleurs[getInt_string(ligne)] = Couleur::JAUNE;
+                        }
+                        if(ligne.find("orange") != string::npos){
+                            couleurs[getInt_string(ligne)] = Couleur::ORANGE;
+                        }
+                    }
+                }
+            }
+            fichier.close();  // on ferme le fichier
+         }else
+            cerr << "Impossible d'ouvrir le fichier !" << endl;
   }
   
 } //end of namespace MMaze
