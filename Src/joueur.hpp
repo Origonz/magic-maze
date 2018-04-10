@@ -13,6 +13,7 @@ private:
     unsigned int position;
 
     int chemin[16];
+    int pred[16];
 
 
     int place_ppetit();

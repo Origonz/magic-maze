@@ -33,7 +33,6 @@ void Joueur::calculChemin(){
     bool a_traite[16];
     vector<Case*> en_cours;
     Direction direction[4] = {HAUT, BAS, GAUCHE, DROITE};
-    int pred[16];
     for(int i = 0;i<16;i++){
         a_traite[i] = true;
         pred[i] = -1;
