@@ -10,6 +10,7 @@ Joueur::Joueur(Couleur c,Tuile* t,int p){
     for(int i=0;i<16;i++){
         chemin[i] = 100;
     }
+    tuile->place_pion(c,position);
 }
 
 int Joueur::place_ppetit(){
