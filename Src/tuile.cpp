@@ -261,6 +261,22 @@ namespace MMaze {
 
   void Tuile::place_pion(Couleur c, int p){
       pions[c] = p;
+      if(sites[p] == 4 || sites[p] == 2 || sites[p] == 11 || sites[p] == 13){
+          switch (sites[p]) {
+          case 2:
+              marche.notify(id,0);;
+              break;
+          case 4:
+              marche.notify(id,1);;
+              break;
+          case 11:
+              marche.notify(id,2);;
+              break;
+          default:
+              marche.notify(id,3);
+              break;
+          }
+      }
   }
 
   void Tuile::afficher_vertical(std::ostream& out, unsigned int i) const {
