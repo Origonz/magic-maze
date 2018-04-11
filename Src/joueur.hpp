@@ -17,13 +17,13 @@ private:
     int cheminG[16];
 
 
-    int place_ppetit();
-    int find(vector<Case*> v,int a);
+    int place_ppetit(); //renvoie la place de la valeur du plus petit chemin
+    int find(vector<Case*> v,int a); //renvoie l'indice de la valeur a dans v
 
 public:
-    void calculChemin();
-    void calculCheminG();
-    Joueur(Couleur c,Tuile* t,int p);
+    Joueur(Couleur c,Tuile* t,int p); //initialise le joueur avec sa couleur, la tuile et la position du pion
+    void calculChemin(); //remplis le tableau chemin avec le plus court chemin
+    void calculCheminG(); //remplis le tableau chemin avec le plus court chemin graph (Non fonctionnel)
     void afficheChemin();
     void afficheCheminG();
     void affichePred();

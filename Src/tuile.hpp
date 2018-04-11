@@ -34,18 +34,9 @@ namespace MMaze {
     friend std::ostream& operator<<(std::ostream& out, const Tuile& t) ;
 
     //Fonctions utiles
-    int find(int c);
-    void unionFind(int c1, int c2);
-    void depart_valide();
-    void classique_valide();
-    void casserMur();
-    void tuile_de_depart();
-    void tuile_classique();
-    bool isin(vector<Case> v, unsigned int index) const;
-    bool estDans(vector<int> v, int i);
-    void signal(int a);
-    void importe(string path);
-    void place_pion(Couleur c,int p);
+    void signal(int a); //
+    void importe(string path); //importe a partir d'un chemin
+    void place_pion(Couleur c,int p); //palce le pion de couleur c à la place p
 
   private :
 
@@ -57,8 +48,17 @@ namespace MMaze {
     void placement_porte();
     void placement_depart();
     void placement_site();
-    int getInt_string(string s);
-    int get_place(int p) const;
+    int getInt_string(string s); //dans l'import, converti le chiffre
+    int get_place(int p) const; //donne la place du pion p
+    int find(int c);
+    void unionFind(int c1, int c2);
+    void depart_valide();
+    void classique_valide();
+    void casserMur();
+    void tuile_de_depart();
+    void tuile_classique();
+    bool isin(vector<Case> v, unsigned int index) const;
+    bool estDans(vector<int> v, int i);
 
     int tab[16];
     char sites[16];

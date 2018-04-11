@@ -8,7 +8,7 @@
 
 namespace MMaze {
 
-struct InfoTuile
+struct InfoTuile //structure pour géré le retournement d'une tuile
 {
     Tuile* tuile;
     Tuile* voisin[4];
@@ -29,10 +29,10 @@ private:
 public:
     SuperMarche();
     void affiche();
-    void notify(int id,int p);
+    void notify(int id,int p); //permet d'ajouter à la porte p la tuile suivante
     };
 
-extern SuperMarche marche;
+extern SuperMarche marche; //solution pour le design pattern observer
 
 } //end of namespace MMaze
 
