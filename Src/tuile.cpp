@@ -260,7 +260,7 @@ namespace MMaze {
   }
 
   void Tuile::place_pion(Couleur c, int p){
-      pions[c] = p;
+      pions[c-1] = p;
       if(sites[p] == 4 || sites[p] == 2 || sites[p] == 11 || sites[p] == 13){
           switch (sites[p]) {
           case 2:
@@ -285,7 +285,7 @@ namespace MMaze {
     for(unsigned int m = 0; m < 4; ++m) {
       out << bg_colors[couleurs[4*i+m]] << sites[4*i+m]<< " " << TXT_CLEAR;
       if(get_place(4*i+m) != -1){
-        out<< txt_colors[get_place(4*i+m)] << "j" << TXT_CLEAR;
+        out<< txt_colors[get_place(4*i+m)+1] << "j" << TXT_CLEAR;
       }else{
         out<< " ";
       }

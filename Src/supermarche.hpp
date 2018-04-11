@@ -25,6 +25,7 @@ class SuperMarche{
 private:
     Melangeur* mel;
     std::vector<InfoTuile> map;
+    Joueur* joueurs[4];
 
 public:
     SuperMarche();

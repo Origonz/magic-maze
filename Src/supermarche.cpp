@@ -6,7 +6,13 @@ SuperMarche::SuperMarche()
 {
   mel = new Melangeur(sizeof(Tuile));
   map  = std::vector<InfoTuile>();
-  map.push_back(InfoTuile(new Tuile(true)));
+  map.push_back(InfoTuile(new Tuile(0,true)));
+
+  joueurs[0] = new Joueur(Couleur::VERT,map[0].tuile,5);
+  joueurs[1] = new Joueur(Couleur::JAUNE,map[0].tuile,6);
+  joueurs[2] = new Joueur(Couleur::VIOLET,map[0].tuile,9);
+  joueurs[3] = new Joueur(Couleur::ORANGE,map[0].tuile,10);
+
   int i = 0;
   do{
       mel->inserer(new Tuile(i));
@@ -36,7 +42,7 @@ void SuperMarche::notify(int id,int p){
     InfoTuile a(&t);
     map.push_back(a);
     map[id].voisin[p] = a.tuile;
-    std::cout<<*map[id].voisin[p]<<std::endl;
+    std::cout<<*map[id].tuile<<std::endl;
 
 }
 
