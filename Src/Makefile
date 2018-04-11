@@ -3,12 +3,15 @@ CXX      = g++
 .DEFAULT_GOAL := all
 
 SOURCES = 
-SOURCES += melangeur.cpp
+SOURCES += couleurs.cpp
 SOURCES += case.cpp
 SOURCES += mur.cpp
-SOURCES += couleurs.cpp
+SOURCES += randomuniform.cpp
+SOURCES += melangeur.cpp
 SOURCES += tuile.cpp
 SOURCES += direction.cpp
+SOURCES += supermarche.cpp
+SOURCES += joueur.cpp
 
 OBJECTS = $(SOURCES:.cpp=.o)
 
@@ -23,18 +26,18 @@ TARGETS =
 
 ########## test_melangeur ##########
 
-MELANGEUR_SOURCES = test_melangeur.cpp
-MELANGEUR_OBJECTS = $(MELANGEUR_SOURCES:.cpp=.o)
+#MELANGEUR_SOURCES = test_melangeur.cpp
+#MELANGEUR_OBJECTS = $(MELANGEUR_SOURCES:.cpp=.o)
 
-test_melangeur : $(MELANGEUR_OBJECTS) $(OBJECTS) $(HEADERS)
-	$(CXX) $(MELANGEUR_OBJECTS) $(OBJECTS) -o $@ $(LDFLAGS)
+#test_melangeur : $(MELANGEUR_OBJECTS) $(OBJECTS) $(HEADERS)
+#	$(CXX) $(MELANGEUR_OBJECTS) $(OBJECTS) -o $@ $(LDFLAGS)
 	
-$(MELANGEUR_OBJECTS): %.o : %.cpp
-	$(CXX) -MMD $(CXXFLAGS) -c $< -o $@
-
-all : test_melangeur
-TARGETS += test_melangeur
-CLEAN_OBJECTS += $(MELANGEUR_OBJECTS)
+#$(MELANGEUR_OBJECTS): %.o : %.cpp
+#	$(CXX) -MMD $(CXXFLAGS) -c $< -o $@
+#
+#all : test_melangeur
+#TARGETS += test_melangeur
+#CLEAN_OBJECTS += $(MELANGEUR_OBJECTS)
 
 ########## test_tuile ##########
 
