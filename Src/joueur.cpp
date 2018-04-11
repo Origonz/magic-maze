@@ -30,6 +30,26 @@ int Joueur::find(vector<Case*> v,int a){
     return i;
 }
 
+void Joueur::calculCheminG(){
+    Direction direction[4] = {HAUT, BAS, GAUCHE, DROITE};
+    Case* tmp;
+    for(int i=0;i<16;i++){
+        cheminG[i] = chemin[i];
+    }
+    for(int i=0;i<16;i++){
+        tmp = new Case(i);
+        for(int d=0;d<4;d++){
+            try{
+                if(!tuile->mur(Mur(*tmp,Case(tmp->voisine(direction[d])))) && cheminG[i]>cheminG[tmp->voisine(direction[d]).index()] && tmp->voisine(direction[d]).index() == pred[i]){
+                    cheminG[i] = cheminG[tmp->voisine(direction[d]).index()];
+                }
+            }catch(exception e){
+
+            }
+        }
+    }
+}
+
 void Joueur::calculChemin(){
     bool a_traite[16];
     vector<Case*> en_cours;
@@ -67,6 +87,15 @@ void Joueur::calculChemin(){
     }
 }
 
+void Joueur::afficheCheminG(){
+    for(int i=0;i<4;i++){
+        for(int j=0;j<4;j++){
+            std::cout<<cheminG[4*i+j]<<" - ";
+        }
+        std::cout<<std::endl;
+    }
+}
+
 void Joueur::afficheChemin(){
     for(int i=0;i<4;i++){
         for(int j=0;j<4;j++){
@@ -84,4 +113,5 @@ void Joueur::affichePred(){
         std::cout<<std::endl;
     }
 }
+
 }

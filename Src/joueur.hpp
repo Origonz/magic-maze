@@ -14,6 +14,7 @@ private:
 
     int chemin[16];
     int pred[16];
+    int cheminG[16];
 
 
     int place_ppetit();
@@ -21,8 +22,10 @@ private:
 
 public:
     void calculChemin();
+    void calculCheminG();
     Joueur(Couleur c,Tuile* t,int p);
     void afficheChemin();
+    void afficheCheminG();
     void affichePred();
 
 };
