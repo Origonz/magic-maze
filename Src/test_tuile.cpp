@@ -12,6 +12,8 @@ int main() {
   Joueur j(Couleur::JAUNE, &t, 5);
   std::cout<<t<<std::endl;
   j.calculChemin();
+  j.afficheChemin();
+  j.affichePred();
 
 
   /* Case *c = new Case(8);
