@@ -9,6 +9,8 @@ SOURCES += mur.cpp
 SOURCES += couleurs.cpp
 SOURCES += tuile.cpp
 SOURCES += direction.cpp
+SOURCES += supermarche.cpp
+SOURCES += joueur.cpp
 
 OBJECTS = $(SOURCES:.cpp=.o)
 

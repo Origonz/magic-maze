@@ -2,6 +2,7 @@
 
 namespace MMaze {
 
+  RandomUniform rd;
   const char* TXT_CLEAR = "\x1B[0m" ;
   const char* TXT_BOLD = "\x1B[1m" ;
   const char* TXT_DEFAULT = "\x1B[39m" ;

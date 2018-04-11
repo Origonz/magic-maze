@@ -7,20 +7,11 @@
 using namespace MMaze ;
 
 int main() {
-
-    SuperMarche m;
-
-    m.Affiche();
-
-    Melangeur w(sizeof(Tuile));
-
-    w.inserer(new Tuile(true));
-
-    Tuile t;
-
-    w.retirer(&t);
-
-    std::cout<<t<<std::endl;
+  
+  Tuile t(false);
+  Joueur j(Couleur::JAUNE, &t, 5);
+  std::cout<<t<<std::endl;
+  j.calculChemin();
 
 
   /* Case *c = new Case(8);
