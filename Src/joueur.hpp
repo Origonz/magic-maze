@@ -22,6 +22,8 @@ private:
 public:
     void calculChemin();
     Joueur(Couleur c,Tuile* t,int p);
+    void afficheChemin();
+    void affichePred();
 
 };
 

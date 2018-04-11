@@ -64,12 +64,23 @@ void Joueur::calculChemin(){
         }
         a_traite[tmp->index()] = false;
     }
-    for(int i=0;i<16;i++){
-        if(i%4==0){
-            std::cout<<std::endl;
+}
+
+void Joueur::afficheChemin(){
+    for(int i=0;i<4;i++){
+        for(int j=0;j<4;j++){
+            std::cout<<chemin[4*i+j]<<" - ";
         }
-        std::cout<<chemin[i]<<"-";
+        std::cout<<std::endl;
     }
 }
 
+void Joueur::affichePred(){
+    for(int i=0;i<4;i++){
+        for(int j=0;j<4;j++){
+            std::cout<<pred[4*i+j]<<" - ";
+        }
+        std::cout<<std::endl;
+    }
+}
 }
