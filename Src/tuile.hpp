@@ -45,6 +45,7 @@ namespace MMaze {
     bool estDans(vector<int> v, int i);
     void signal(int a);
     void importe(string path);
+    void place_pion(Couleur c,int p);
 
   private :
 
@@ -57,12 +58,14 @@ namespace MMaze {
     void placement_depart();
     void placement_site();
     int getInt_string(string s);
+    int get_place(int p) const;
 
     int tab[16];
     char sites[16];
     Couleur couleurs[16];
     bool walls[24];
     int id;
+    int pions[4]; //On va considéré que l'ordre est JAUNE, VERT, ORANGE, VIOLET (int étant la plca dans la tuile
   } ;
 
 } //end of namespace MMaze

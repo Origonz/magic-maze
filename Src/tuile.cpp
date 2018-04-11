@@ -10,6 +10,7 @@ namespace MMaze {
   Tuile::Tuile(int i /*=0*/,bool d /*=false*/) {
     id = i;
     for (unsigned int i=0; i<4; i++) {
+      pions[i] = -1;
       for (unsigned int j=0; j<4; j++) {
         tab[4*i+j] = 4*i+j;
         couleurs[4*i+j] = Couleur::AUCUNE;
@@ -249,16 +250,29 @@ namespace MMaze {
     }
   }
   
+  int Tuile::get_place(int p) const{
+      for(int i=0;i<4;i++){
+          if(pions[i] == p){
+              return i;
+          }
+      }
+      return -1;
+  }
+
+  void Tuile::place_pion(Couleur c, int p){
+      pions[c] = p;
+  }
+
   void Tuile::afficher_vertical(std::ostream& out, unsigned int i) const {
     assert(i < 4) ;
     out << "|" ;
     for(unsigned int m = 0; m < 4; ++m) {
-      out << bg_colors[couleurs[4*i+m]] << sites[4*i+m]<< "  " << TXT_CLEAR;
-      /*if(joueur[4*i+m] != Couleur::AUCUNE){
-          out << txt_colors[joueur[4*i+m]] << BG_DEFAULT << "j" << TXT_CLEAR;
+      out << bg_colors[couleurs[4*i+m]] << sites[4*i+m]<< " " << TXT_CLEAR;
+      if(get_place(4*i+m) != -1){
+        out<< txt_colors[get_place(4*i+m)] << "j" << TXT_CLEAR;
       }else{
-          out << bg_colors[couleurs[4*i+m]] << " " << TXT_CLEAR;
-      }*/
+        out<< " ";
+      }
 
       if(m < 3) {
 	Case left = Case(i, m) ;
